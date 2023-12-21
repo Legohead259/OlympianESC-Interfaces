@@ -1,0 +1,71 @@
+# File: motor_interfaces/msg/SetFocParameters.srv
+#
+# motor_interfaces: ROS 2 package containing custom messages, services and actions for the control of a BLDC motor using SimpleFOC and MicroROS
+# SetControllerMode.srv: Service definition for changing parameters within the FOC algorithm during runtime
+#
+# Description:
+# This service changes various tuning parameters for the SimpleFOC algorithm such as the PID gains and electrical characteristics.
+# Some parameters will automatically be updated during runtime, but others will require a power-on reset of the microcontroller
+# Ideally, the microcontroller will save these values to non-volatile memory for recovery at the next start.
+#
+# Request:
+# uint8     pole_pairs              The number of pole pairs in the motor
+# float32   phase_resistance        The average resistance for the motor phases (>=0)
+# uint32    kv_rating               The number of revolutions per second per volt of EMF
+# float32   phase_inductance        The average inductance for the motor phases (>=0)
+
+# float32   velocity_p              Velocity controller Proportional gain (>=0)     | Default: 0.5
+# float32   velocity_i              Velocity controller Integral gain (>=0)         | Default: 10
+# float32   velocity_d              Velocity controller Derivative gain (>=0)       | Default: 0
+# float32   velocity_output_ramp    Jerk control using voltage (>=0) [V/sec]        | Default: 300 V/sec
+# float32   velocity_lpf_tf         Velocity controller LPF filter cutoff (>=0) [ms]| Default: 5 ms
+
+# float32   angle_p                 Angle controller Proportional gain (>=0)        | Default: 20
+# float32   angle_i                 Angle controller Integral gain (>=0)            | Default: 0
+# float32   angle_d                 Angle controller Derivative gain (>=0)          | Default: 0
+# float32   angle_output_ramp       Sets the limit of accerlation (>=0) [rad/s/s]   | Default: 1e6 rad/s/s
+# float32   angle_lpf_tf            Angle controller LFP filter cutoff (>=0) [ms]   | Default: 0 ms (disabled)
+
+# float32   driver_voltage_limit    The voltage limit applied to the driver [V]
+# float32   driver_current_limit    The current limit applied to the driver [A]
+# float32   motor_voltage_limit     The voltage limit applied to the motor [V]      | Default: driver_voltage_limit
+# float32   motor_current_limit     The current limit applied to the motor [A]      | Default: driver_current_limit
+# float32   motor_velocity_limit    The velocity limit of the motor [rad/sec]       | Default: 20 rad/sec
+#
+# Response:
+# uint8 result      Result of the operation. A failure may indicate that the system is in an error state, or a configuration parameter was not correct.
+#
+# See https://docs.simplefoc.com/motion_control for more details
+#
+# Result | Description
+# -------|----------------------------
+#    0   | Operation success; parameters changed as requested
+#    1   | Operation failed - unspecified error
+#    2   | Operation failed - one or more parameters invalid
+
+uint8 pole_pairs
+float32 phase_resistance
+uint32 kv_rating
+float32 phase_inductance
+
+float32 velocity_p
+float32 velocity_i
+float32 velocity_d
+float32 velocity_output_ramp
+float32 velocity_lpf_tf
+
+float32 angle_p
+float32 angle_i
+float32 angle_d
+float32 angle_output_ramp
+float32 angle_lpf_tf
+
+float32 driver_voltage_limit
+float32 driver_current_limit
+float32 motor_voltage_limit
+float32 motor_current_limit
+float32 motor_velocity_limit
+
+---
+
+uint8 result
