@@ -27,9 +27,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/Home.action"  
-  "msg/AngularAcceleration.msg"
-  "msg/AngularVelocity.msg"
-  "msg/AngularPosition.msg"
+  "msg/AngularMeasurement.msg"
   "msg/MotorStatus.msg"
   "srv/SetControllerMode.srv"
   "srv/SetTarget.srv"
