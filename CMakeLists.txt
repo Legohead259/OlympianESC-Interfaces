@@ -32,7 +32,6 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/AngularPosition.msg"
   "msg/MotorStatus.msg"
   "srv/SetControllerMode.srv"
-  "srv/SetMotorDirection.srv"
   "srv/SetTarget.srv"
 )
 
