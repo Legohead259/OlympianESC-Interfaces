@@ -30,6 +30,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/AngularMeasurement.msg"
   "msg/MotorStatus.msg"
   "srv/SetControllerMode.srv"
+  "srv/SetFocParameters.srv"
+  "srv/SetMotorDirection.srv"
   "srv/SetTarget.srv"
 )
 
